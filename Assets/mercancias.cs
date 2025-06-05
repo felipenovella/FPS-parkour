@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class mercancias : MonoBehaviour
 {
-  private void OnCollisionEnter(Collision collision)
+    public float cost;
+    public MoneyManager moneyManager;
+
+    void Start()
+    {
+        moneyManager = FindObjectOfType<MoneyManager>();
+    }
+    private void OnCollisionEnter(Collision collision)
     { 
         if (collision.gameObject.name == "Player")
         {
+            moneyManager.UpdateMoney(cost);
             Destroy(gameObject);
         }
      }
