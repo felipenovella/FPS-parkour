@@ -7,6 +7,7 @@ public class InteractionArea : MonoBehaviour
   
     public GameObject interactionMessage;
     public mercancias mercancia;
+    public MoneyManager moneymanager;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,11 +18,13 @@ public class InteractionArea : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.E)){
-    if (mercancia){
+    if (mercancia && moneymanager.money >= mercancia.cost) {
         Destroy(mercancia.gameObject);
+                moneymanager.UpdateMoney(-mercancia.cost);
         StopInteraction();
+
     }
-}
+}      
     }
 
     private void OnTriggerEnter(Collider other)
