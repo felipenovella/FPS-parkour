@@ -16,7 +16,12 @@ public class InteractionArea : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.E)){
+    if (mercancia){
+        Destroy(mercancia.gameObject);
+        StopInteraction();
+    }
+}
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,6 +36,12 @@ public class InteractionArea : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         
-        interactionMessage.SetActive(false);
+      StopInteraction();
+
+    }
+    void StopInteraction()
+    {
+          interactionMessage.SetActive(false);
+        mercancia = null;
     }
 }
